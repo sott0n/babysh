@@ -1,2 +1,2 @@
 # babysh
-A baby shell written with rust.
+A baby shell written in rust.
