@@ -24,9 +24,14 @@ fn main() {
                     eprintln!("{}", e);
                 }
             }
+            "exit" => return,
             _ => {
-                let mut child = Command::new(cmd).args(args).spawn().unwrap();
-                let _ = child.wait();
+                match Command::new(cmd).args(args).spawn() {
+                    Ok(mut child) => {
+                        let _ = child.wait();
+                    }
+                    Err(_) => eprintln!("babysh: command not found: {}", cmd),
+                };
             }
         }
     }
